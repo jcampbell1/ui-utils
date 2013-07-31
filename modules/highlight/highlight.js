@@ -4,16 +4,19 @@
  * @param search {string} needle to search for
  * @param [caseSensitive] {boolean} optional boolean to use case-sensitive searching
  */
-angular.module('ui.highlight',[]).filter('highlight', function () {
+angular.module('ui.highlight', []).filter('highlight', function () {
   return function (text, search, caseSensitive) {
     if (search || angular.isNumber(search)) {
       text = text.toString();
       search = search.toString();
-      if (caseSensitive) {
-        return text.split(search).join('<span class="ui-match">' + search + '</span>');
-      } else {
-        search = search.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"); // escape RegExp
-        return text.replace(new RegExp(search, 'gi'), '<span class="ui-match">$&</span>');
+      try {
+        if (caseSensitive) {
+          return text.split(search).join('<span class="ui-match">' + search + '</span>');
+        } else {
+          return text.replace(new RegExp(search, 'gi'), '<span class="ui-match">$&</span>');
+        }
+      } catch (err) {
+        return text;
       }
     } else {
       return text;
