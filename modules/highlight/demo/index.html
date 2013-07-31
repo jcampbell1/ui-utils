@@ -1,6 +1,10 @@
 <style>
-  .ui-match {
+  .ui-match:nth-child(even) {
     background: yellow;
+  }
+
+  .ui-match:nth-child(odd) {
+    background: orange;
   }
 </style>
 
@@ -27,7 +31,8 @@
 &lt;p ng-bind-html-unsafe=&quot;&#x27;Hello there, how are you today? I\'m fine thank you.&#x27; | highlight:highlightText:caseSensitive&quot;&gt;&lt;/p&gt;
 
 &lt;style&gt;
-.ui-match { background: yellow; }
+.ui-match:nth-child(even) { background: yellow; }
+.ui-match:nth-child(odd)  { background: orange; }
 &lt;/style&gt;
 </pre>
 </section>
